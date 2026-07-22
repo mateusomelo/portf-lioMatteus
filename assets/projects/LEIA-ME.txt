@@ -1,0 +1,9 @@
+Coloque aqui as imagens dos projetos com os nomes:
+projeto-1.jpg (Site Institucional)
+projeto-2.jpg (Landing Pages)
+projeto-3.jpg (Infraestrutura de Redes)
+projeto-4.jpg (Automações com IA)
+projeto-5.jpg (Projetos de Data Center)
+
+Se a imagem não existir, um ícone substituto é exibido automaticamente — o site não quebra.
+Recomendação: imagens no formato 16:9 (ex: 800x450px).

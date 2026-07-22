@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matteus Oliveira de Melo | Infraestrutura • Redes • Desenvolvedor Web</title>
+<meta name="description" content="Portfólio profissional de Matteus Oliveira de Melo — Analista de Infraestrutura, Data Center, Redes e Desenvolvedor Web.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== CUSTOM CURSOR ===================== -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-outline" id="cursorOutline"></div>
+
+<!-- ===================== PRELOADER ===================== -->
+<div class="preloader" id="preloader">
+  <div class="preloader-content">
+    <div class="preloader-logo">MOM<span class="dot">.</span></div>
+    <div class="preloader-bar"><span id="preloaderProgress"></span></div>
+    <p class="preloader-text">Carregando experiência<span class="loading-dots"><i></i><i></i><i></i></span></p>
+  </div>
+</div>
+
+<!-- ===================== BACKGROUND PARTICLES ===================== -->
+<canvas id="particles"></canvas>
+
+<!-- ===================== SCROLL PROGRESS ===================== -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="navbar" id="navbar">
+  <nav class="nav-container">
+    <a href="#hero" class="nav-logo">MOM<span class="dot">.</span></a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="nav-link active" data-section="hero">Início</a></li>
+      <li><a href="#sobre" class="nav-link" data-section="sobre">Sobre</a></li>
+      <li><a href="#especialidades" class="nav-link" data-section="especialidades">Especialidades</a></li>
+      <li><a href="#experiencia" class="nav-link" data-section="experiencia">Experiência</a></li>
+      <li><a href="#projetos" class="nav-link" data-section="projetos">Projetos</a></li>
+      <li><a href="#certificacoes" class="nav-link" data-section="certificacoes">Certificações</a></li>
+      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#contato" class="nav-link" data-section="contato">Contato</a></li>
+    </ul>
+
+    <a href="#contato" class="btn btn-nav">
+      <span>Vamos Conversar</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="orb orb-blue" data-parallax="0.03"></div>
+      <div class="orb orb-blue-2" data-parallax="0.05"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div class="hero-container">
+      <div class="hero-text reveal" data-reveal="left">
+        <span class="hero-tag"><i class="fa-solid fa-satellite-dish"></i> Disponível para novas oportunidades</span>
+
+        <h1 class="hero-title">
+          Olá, eu sou <span class="text-gradient">Matteus Oliveira<br> de Melo</span>
+        </h1>
+
+        <h2 class="hero-role">
+          Analista de Infraestrutura <span class="sep">•</span> Data Center <span class="sep">•</span> Redes <span class="sep">•</span> Desenvolvedor Web
+        </h2>
+
+        <div class="hero-typing">
+          <span class="typing-prefix">&gt;</span>
+          <span id="typingText"></span><span class="typing-cursor">|</span>
+        </div>
+
+        <p class="hero-phrase">
+          "Transformando infraestrutura, redes e desenvolvimento em soluções eficientes para empresas."
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projetos" class="btn btn-primary">
+            <i class="fa-solid fa-diagram-project"></i> Ver Projetos
+          </a>
+          <a href="assets/cv/curriculo-matteus-oliveira-melo.pdf" download class="btn btn-secondary">
+            <i class="fa-solid fa-download"></i> Download Currículo
+          </a>
+          <a href="#contato" class="btn btn-ghost">
+            <i class="fa-solid fa-paper-plane"></i> Entrar em Contato
+          </a>
+        </div>
+
+        <div class="hero-social">
+          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" target="_blank" rel="noopener" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="hero-photo reveal" data-reveal="right">
+        <div class="hero-photo-ring"></div>
+        <div class="hero-photo-frame" data-tilt>
+          <!-- Adicione sua foto em assets/img/perfil.jpg -->
+          <img src="assets/img/perfil.jpg" alt="Foto de Matteus Oliveira de Melo" id="heroPhoto">
+          <div class="hero-photo-fallback"><i class="fa-solid fa-user-astronaut"></i></div>
+        </div>
+        <div class="floating-badge badge-1"><i class="fa-solid fa-server"></i> Data Center</div>
+        <div class="floating-badge badge-2"><i class="fa-solid fa-network-wired"></i> Redes</div>
+        <div class="floating-badge badge-3"><i class="fa-solid fa-code"></i> Dev Web</div>
+      </div>
+    </div>
+
+    <a href="#sobre" class="scroll-indicator" aria-label="Rolar para baixo">
+      <span>Scroll</span>
+      <div class="mouse"><div class="wheel"></div></div>
+    </a>
+  </section>
+
+  <!-- ===================== SOBRE MIM ===================== -->
+  <section class="section" id="sobre">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Sobre mim</span>
+        <h2 class="section-title">Quem é <span class="text-gradient">Matteus</span></h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal" data-reveal="left">
+          <p>
+            Sou <strong>Matteus Oliveira de Melo</strong>, profissional de Tecnologia da Informação com atuação nas
+            áreas de <strong>Infraestrutura</strong>, <strong>Redes</strong> e <strong>Desenvolvimento Web</strong>.
+            Atualmente trabalho como <strong>Técnico de Cabeamento Jr. no Grupo ARION</strong>, onde atuo diretamente
+            em projetos de cabeamento estruturado, fibra óptica e infraestrutura de telecomunicações para
+            ambientes corporativos.
+          </p>
+          <p>
+            Estou cursando <strong>Análise e Desenvolvimento de Sistemas</strong> pela Anhanguera, unindo minha
+            vivência prática em campo com uma base sólida de programação e lógica de desenvolvimento de software.
+          </p>
+          <p>
+            Ao longo da minha trajetória, construí experiência em <strong>Data Centers</strong>,
+            <strong>Infraestrutura de Redes</strong>, <strong>Cabeamento Estruturado</strong>,
+            <strong>Telecomunicações</strong>, <strong>Fibra Óptica</strong>, <strong>Cabeamento UTP</strong>,
+            <strong>Sistemas Operacionais</strong>, <strong>Suporte Técnico</strong>,
+            <strong>Desenvolvimento Web</strong>, <strong>Automação</strong> e
+            <strong>Inteligência Artificial aplicada ao desenvolvimento</strong>.
+          </p>
+          <p>
+            Sou movido pela curiosidade técnica: gosto de <strong>aprender novas tecnologias</strong>,
+            <strong>resolver problemas complexos</strong> e transformar desafios em soluções eficientes, sempre
+            buscando unir infraestrutura sólida com software inteligente.
+          </p>
+
+          <div class="about-tags">
+            <span>Data Centers</span><span>Infraestrutura de Redes</span><span>Cabeamento Estruturado</span>
+            <span>Telecomunicações</span><span>Fibra Óptica</span><span>Cabeamento UTP</span>
+            <span>Sistemas Operacionais</span><span>Suporte Técnico</span><span>Desenvolvimento Web</span>
+            <span>Automação</span><span>IA aplicada</span>
+          </div>
+        </div>
+
+        <div class="about-card-wrap reveal" data-reveal="right">
+          <div class="glass-card about-highlight" data-tilt>
+            <i class="fa-solid fa-quote-left quote-icon"></i>
+            <p>"Gosto de aprender novas tecnologias, resolver problemas complexos e criar soluções eficientes."</p>
+            <div class="about-highlight-footer">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Infraestrutura + Software, na mesma pessoa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ESPECIALIDADES ===================== -->
+  <section class="section section-alt" id="especialidades">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">O que eu faço</span>
+        <h2 class="section-title">Minhas <span class="text-gradient">Especialidades</span></h2>
+        <p class="section-desc">Da infraestrutura física à camada de software, atuando em toda a cadeia de tecnologia.</p>
+      </div>
+
+      <div class="specialty-grid">
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-solid fa-network-wired"></i></div><h3>Infraestrutura de Redes</h3><p>Projeto, instalação e manutenção de redes corporativas.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-solid fa-server"></i></div><h3>Data Centers</h3><p>Operação e monitoramento de ambientes críticos.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-solid fa-headset"></i></div><h3>Suporte Técnico</h3><p>Diagnóstico e resolução de incidentes de hardware e software.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-solid fa-ethernet"></i></div><h3>Cabeamento Estruturado</h3><p>Certificação e organização de infraestrutura de cabeamento.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-solid fa-wave-square"></i></div><h3>Fibra Óptica</h3><p>Fusão, lançamento e testes de enlaces ópticos.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-solid fa-bolt"></i></div><h3>Elétrica de Baixa Tensão</h3><p>Instalações elétricas seguras para ambientes de TI.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-solid fa-code"></i></div><h3>Desenvolvimento Web</h3><p>Criação de sites e sistemas modernos e responsivos.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-brands fa-html5"></i></div><h3>HTML</h3><p>Estruturação semântica de páginas web.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-brands fa-css3-alt"></i></div><h3>CSS</h3><p>Estilização moderna, responsiva e animada.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-brands fa-js"></i></div><h3>JavaScript</h3><p>Interatividade e lógica no front-end.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-brands fa-python"></i></div><h3>Python</h3><p>Automação de processos e scripts utilitários.</p></div>
+        <div class="specialty-card reveal" data-tilt><div class="specialty-icon"><i class="fa-solid fa-robot"></i></div><h3>IA para Desenvolvimento</h3><p>Uso de Inteligência Artificial aplicada ao ciclo de desenvolvimento.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LINHA DO TEMPO ===================== -->
+  <section class="section" id="experiencia">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Trajetória</span>
+        <h2 class="section-title">Linha do <span class="text-gradient">Tempo</span></h2>
+        <p class="section-desc">Experiência profissional construída entre infraestrutura, data centers e desenvolvimento.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal" data-reveal="left">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-tilt>
+            <span class="timeline-period">Período: <em>adicionar</em></span>
+            <h3>RESINF Informática</h3>
+            <span class="timeline-role">Analista de Suporte Jr.</span>
+            <div class="timeline-tags">
+              <span>Suporte Técnico</span><span>Infraestrutura</span><span>Redes</span><span>Câmeras</span><span>Hardware</span><span>Software</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" data-reveal="right">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-tilt>
+            <span class="timeline-period">Período: <em>adicionar</em></span>
+            <h3>AURUM Soluções Integradas</h3>
+            <span class="timeline-role">Analista de Suporte Jr.</span>
+            <div class="timeline-tags">
+              <span>Infraestrutura</span><span>Desenvolvimento Web</span><span>Python</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Projetos Web</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" data-reveal="left">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-tilt>
+            <span class="timeline-period">Período: <em>adicionar</em></span>
+            <h3>datacriticalTI</h3>
+            <span class="timeline-role">Analista de Data Center Jr.</span>
+            <div class="timeline-tags">
+              <span>Operações de Data Center</span><span>Monitoramento</span><span>Ambientes Críticos</span><span>Infraestrutura</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" data-reveal="right">
+          <div class="timeline-dot timeline-dot-current"></div>
+          <div class="glass-card timeline-card timeline-current" data-tilt>
+            <span class="timeline-period current">Atual</span>
+            <h3>Grupo ARION</h3>
+            <span class="timeline-role">Técnico de Cabeamento Jr.</span>
+            <div class="timeline-tags">
+              <span>Infraestrutura</span><span>Cabeamento Estruturado</span><span>Fibra Óptica</span><span>UTP</span><span>Telecom</span><span>Projetos Corporativos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJETOS ===================== -->
+  <section class="section section-alt" id="projetos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Portfólio</span>
+        <h2 class="section-title">Meus <span class="text-gradient">Projetos</span></h2>
+        <p class="section-desc">Uma seleção de trabalhos entre desenvolvimento web, automação e infraestrutura.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <article class="project-card reveal" data-tilt>
+          <div class="project-image">
+            <img src="assets/projects/projeto-1.jpg" alt="Site Institucional" onerror="this.style.display='none'">
+            <div class="project-image-fallback"><i class="fa-solid fa-globe"></i></div>
+            <div class="project-overlay"><i class="fa-brands fa-github"></i></div>
+          </div>
+          <div class="project-body">
+            <h3>Site Institucional</h3>
+            <p>Site institucional completo, responsivo e otimizado para apresentar empresas de forma profissional.</p>
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span></div>
+            <a href="#" target="_blank" rel="noopener" class="project-link"><i class="fa-brands fa-github"></i> Ver no GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-tilt>
+          <div class="project-image">
+            <img src="assets/projects/projeto-2.jpg" alt="Landing Pages" onerror="this.style.display='none'">
+            <div class="project-image-fallback"><i class="fa-solid fa-rocket"></i></div>
+            <div class="project-overlay"><i class="fa-brands fa-github"></i></div>
+          </div>
+          <div class="project-body">
+            <h3>Landing Pages</h3>
+            <p>Páginas de alta conversão com foco em performance, design moderno e responsividade total.</p>
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+            <a href="#" target="_blank" rel="noopener" class="project-link"><i class="fa-brands fa-github"></i> Ver no GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-tilt>
+          <div class="project-image">
+            <img src="assets/projects/projeto-3.jpg" alt="Infraestrutura de Redes" onerror="this.style.display='none'">
+            <div class="project-image-fallback"><i class="fa-solid fa-network-wired"></i></div>
+            <div class="project-overlay"><i class="fa-brands fa-github"></i></div>
+          </div>
+          <div class="project-body">
+            <h3>Infraestrutura de Redes</h3>
+            <p>Projetos de estruturação, documentação e organização de redes corporativas.</p>
+            <div class="project-tags"><span>Redes</span><span>Cabeamento</span><span>Documentação</span></div>
+            <a href="#" target="_blank" rel="noopener" class="project-link"><i class="fa-brands fa-github"></i> Ver no GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-tilt>
+          <div class="project-image">
+            <img src="assets/projects/projeto-4.jpg" alt="Automações com IA" onerror="this.style.display='none'">
+            <div class="project-image-fallback"><i class="fa-solid fa-robot"></i></div>
+            <div class="project-overlay"><i class="fa-brands fa-github"></i></div>
+          </div>
+          <div class="project-body">
+            <h3>Automações com IA</h3>
+            <p>Scripts e fluxos de automação utilizando Python e Inteligência Artificial aplicada.</p>
+            <div class="project-tags"><span>Python</span><span>IA</span><span>Automação</span></div>
+            <a href="#" target="_blank" rel="noopener" class="project-link"><i class="fa-brands fa-github"></i> Ver no GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-tilt>
+          <div class="project-image">
+            <img src="assets/projects/projeto-5.jpg" alt="Projetos de Data Center" onerror="this.style.display='none'">
+            <div class="project-image-fallback"><i class="fa-solid fa-server"></i></div>
+            <div class="project-overlay"><i class="fa-brands fa-github"></i></div>
+          </div>
+          <div class="project-body">
+            <h3>Projetos de Data Center</h3>
+            <p>Documentação, monitoramento e operação de ambientes críticos de Data Center.</p>
+            <div class="project-tags"><span>Infraestrutura</span><span>Monitoramento</span><span>Data Center</span></div>
+            <a href="#" target="_blank" rel="noopener" class="project-link"><i class="fa-brands fa-github"></i> Ver no GitHub</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CERTIFICAÇÕES ===================== -->
+  <section class="section" id="certificacoes">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Qualificações</span>
+        <h2 class="section-title">Certificações <span class="text-gradient">NR</span></h2>
+      </div>
+
+      <div class="cert-grid">
+        <div class="cert-card reveal" data-tilt><i class="fa-solid fa-helmet-safety"></i><h3>NR-06</h3><p>Equipamento de Proteção Individual</p></div>
+        <div class="cert-card reveal" data-tilt><i class="fa-solid fa-gears"></i><h3>NR-12</h3><p>Segurança em Máquinas e Equipamentos</p></div>
+        <div class="cert-card reveal" data-tilt><i class="fa-solid fa-box-archive"></i><h3>NR-33</h3><p>Espaços Confinados</p></div>
+        <div class="cert-card reveal" data-tilt><i class="fa-solid fa-person-falling-burst"></i><h3>NR-35</h3><p>Trabalho em Altura</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Nível técnico</span>
+        <h2 class="section-title">Minhas <span class="text-gradient">Skills</span></h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skills-col reveal" data-reveal="left">
+          <div class="skill-bar"><div class="skill-info"><span>Infraestrutura</span><span class="skill-percent">92%</span></div><div class="skill-track"><div class="skill-fill" data-width="92"></div></div></div>
+          <div class="skill-bar"><div class="skill-info"><span>Redes</span><span class="skill-percent">90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90"></div></div></div>
+          <div class="skill-bar"><div class="skill-info"><span>Suporte Técnico</span><span class="skill-percent">95%</span></div><div class="skill-track"><div class="skill-fill" data-width="95"></div></div></div>
+          <div class="skill-bar"><div class="skill-info"><span>Fibra Óptica</span><span class="skill-percent">85%</span></div><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
+          <div class="skill-bar"><div class="skill-info"><span>Cabeamento Estruturado</span><span class="skill-percent">90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90"></div></div></div>
+        </div>
+        <div class="skills-col reveal" data-reveal="right">
+          <div class="skill-bar"><div class="skill-info"><span>Data Center</span><span class="skill-percent">88%</span></div><div class="skill-track"><div class="skill-fill" data-width="88"></div></div></div>
+          <div class="skill-bar"><div class="skill-info"><span>Python</span><span class="skill-percent">75%</span></div><div class="skill-track"><div class="skill-fill" data-width="75"></div></div></div>
+          <div class="skill-bar"><div class="skill-info"><span>HTML</span><span class="skill-percent">90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90"></div></div></div>
+          <div class="skill-bar"><div class="skill-info"><span>CSS</span><span class="skill-percent">85%</span></div><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
+          <div class="skill-bar"><div class="skill-info"><span>JavaScript</span><span class="skill-percent">78%</span></div><div class="skill-track"><div class="skill-fill" data-width="78"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FORMAÇÃO ===================== -->
+  <section class="section" id="formacao">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Educação</span>
+        <h2 class="section-title">Formação <span class="text-gradient">Acadêmica</span></h2>
+      </div>
+
+      <div class="education-card glass-card reveal" data-tilt>
+        <div class="education-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="education-info">
+          <h3>Análise e Desenvolvimento de Sistemas</h3>
+          <span class="education-institution">Anhanguera</span>
+          <span class="education-period"><i class="fa-regular fa-calendar"></i> 2024 — 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ESTATÍSTICAS ===================== -->
+  <section class="section section-alt stats-section" id="estatisticas">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <i class="fa-solid fa-briefcase"></i>
+          <span class="stat-number" data-target="2" data-suffix="+">0</span>
+          <span class="stat-label">Anos de Experiência</span>
+        </div>
+        <div class="stat-card reveal">
+          <i class="fa-solid fa-diagram-project"></i>
+          <span class="stat-number" data-target="15" data-suffix="+">0</span>
+          <span class="stat-label">Projetos Realizados</span>
+        </div>
+        <div class="stat-card reveal">
+          <i class="fa-solid fa-layer-group"></i>
+          <span class="stat-number" data-target="12" data-suffix="+">0</span>
+          <span class="stat-label">Tecnologias Dominadas</span>
+        </div>
+        <div class="stat-card reveal">
+          <i class="fa-solid fa-building"></i>
+          <span class="stat-number" data-target="4" data-suffix="">0</span>
+          <span class="stat-label">Empresas</span>
+        </div>
+        <div class="stat-card reveal">
+          <i class="fa-solid fa-certificate"></i>
+          <span class="stat-number" data-target="4" data-suffix="">0</span>
+          <span class="stat-label">Certificações</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTATO ===================== -->
+  <section class="section" id="contato">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Contato</span>
+        <h2 class="section-title">Vamos <span class="text-gradient">Conversar</span></h2>
+        <p class="section-desc">Aberto a oportunidades em infraestrutura, redes, data center e desenvolvimento web.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal" data-reveal="left">
+          <a href="tel:+5500000000000" class="contact-item glass-card" data-tilt>
+            <i class="fa-solid fa-phone"></i>
+            <div><span>Telefone</span><strong>(00) 00000-0000</strong></div>
+          </a>
+          <a href="mailto:seuemail@exemplo.com" class="contact-item glass-card" data-tilt>
+            <i class="fa-solid fa-envelope"></i>
+            <div><span>E-mail</span><strong>seuemail@exemplo.com</strong></div>
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="contact-item glass-card" data-tilt>
+            <i class="fa-brands fa-linkedin-in"></i>
+            <div><span>LinkedIn</span><strong>/in/matteus-oliveira</strong></div>
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="contact-item glass-card" data-tilt>
+            <i class="fa-brands fa-github"></i>
+            <div><span>GitHub</span><strong>/matteus-oliveira</strong></div>
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="contact-item glass-card" data-tilt>
+            <i class="fa-brands fa-whatsapp"></i>
+            <div><span>WhatsApp</span><strong>Enviar mensagem</strong></div>
+          </a>
+
+          <div class="contact-map glass-card">
+            <iframe
+              title="Localização"
+              src="https://maps.google.com/maps?q=S%C3%A3o%20Paulo&t=&z=11&ie=UTF8&iwloc=&output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <form class="contact-form glass-card reveal" data-reveal="right" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nome</label>
+              <input type="text" id="name" name="name" required placeholder="Seu nome completo">
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Assunto</label>
+            <input type="text" id="subject" name="subject" required placeholder="Sobre o que é o contato?">
+          </div>
+          <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Escreva sua mensagem..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <span id="submitText"><i class="fa-solid fa-paper-plane"></i> Enviar Mensagem</span>
+          </button>
+          <p class="form-feedback" id="formFeedback"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== RODAPÉ ===================== -->
+<footer class="footer">
+  <div class="container footer-container">
+    <a href="#hero" class="nav-logo">MOM<span class="dot">.</span></a>
+    <p>&copy; 2026 Matteus Oliveira de Melo. Todos os direitos reservados.</p>
+    <div class="footer-social">
+      <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="#" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="#" target="_blank" rel="noopener" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>

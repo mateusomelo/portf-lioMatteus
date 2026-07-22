@@ -1,0 +1,4 @@
+Coloque aqui sua foto de perfil com o nome exato: perfil.jpg
+(Pode ser .jpg, .jpeg ou .png — se usar outra extensão, ajuste o "src" da tag <img id="heroPhoto"> no index.html)
+
+Recomendação: foto quadrada, boa iluminação, fundo neutro, mínimo 500x500px.
