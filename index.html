@@ -49,9 +49,7 @@
       <li><a href="#especialidades" class="nav-link" data-section="especialidades">Especialidades</a></li>
       <li><a href="#experiencia" class="nav-link" data-section="experiencia">Experiência</a></li>
       <li><a href="#projetos" class="nav-link" data-section="projetos">Projetos</a></li>
-      <li><a href="#projetos-ao-vivo" class="nav-link" data-section="projetos-ao-vivo">Projetos Ao Vivo</a></li>
       <li><a href="#certificacoes" class="nav-link" data-section="certificacoes">Certificações</a></li>
-      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
       <li><a href="#contato" class="nav-link" data-section="contato">Contato</a></li>
     </ul>
 
@@ -146,28 +144,15 @@
       <div class="about-grid">
         <div class="about-text reveal" data-reveal="left">
           <p>
-            Sou <strong>Matteus Oliveira de Melo</strong>, profissional de Tecnologia da Informação com atuação nas
-            áreas de <strong>Infraestrutura</strong>, <strong>Redes</strong> e <strong>Desenvolvimento Web</strong>.
-            Atualmente trabalho como <strong>Técnico de Cabeamento Jr. no Grupo ARION</strong>, onde atuo diretamente
-            em projetos de cabeamento estruturado, fibra óptica e infraestrutura de telecomunicações para
-            ambientes corporativos.
+            Sou <strong>Matteus Oliveira de Melo</strong>, profissional de TI com atuação em
+            <strong>Infraestrutura</strong>, <strong>Redes</strong> e <strong>Desenvolvimento Web</strong>.
+            Atualmente trabalho como <strong>Técnico de Cabeamento Jr. no Grupo ARION</strong>, em projetos de
+            cabeamento estruturado, fibra óptica e telecomunicações para ambientes corporativos — e curso
+            <strong>Análise e Desenvolvimento de Sistemas</strong> pela Anhanguera.
           </p>
           <p>
-            Estou cursando <strong>Análise e Desenvolvimento de Sistemas</strong> pela Anhanguera, unindo minha
-            vivência prática em campo com uma base sólida de programação e lógica de desenvolvimento de software.
-          </p>
-          <p>
-            Ao longo da minha trajetória, construí experiência em <strong>Data Centers</strong>,
-            <strong>Infraestrutura de Redes</strong>, <strong>Cabeamento Estruturado</strong>,
-            <strong>Telecomunicações</strong>, <strong>Fibra Óptica</strong>, <strong>Cabeamento UTP</strong>,
-            <strong>Sistemas Operacionais</strong>, <strong>Suporte Técnico</strong>,
-            <strong>Desenvolvimento Web</strong>, <strong>Automação</strong> e
-            <strong>Inteligência Artificial aplicada ao desenvolvimento</strong>.
-          </p>
-          <p>
-            Sou movido pela curiosidade técnica: gosto de <strong>aprender novas tecnologias</strong>,
-            <strong>resolver problemas complexos</strong> e transformar desafios em soluções eficientes, sempre
-            buscando unir infraestrutura sólida com software inteligente.
+            Unindo vivência prática em campo com lógica de programação, gosto de <strong>aprender novas
+            tecnologias</strong> e transformar problemas complexos em soluções eficientes.
           </p>
 
           <div class="about-tags">
@@ -360,73 +345,23 @@
           </div>
         </article>
 
+        <article class="project-card reveal" data-tilt>
+          <div class="project-image">
+            <img src="assets/projects/projeto-6.jpg" alt="Plataforma de Projetos Ao Vivo" onerror="this.style.display='none'">
+            <div class="project-image-fallback"><i class="fa-solid fa-satellite-dish"></i></div>
+            <div class="project-overlay"><i class="fa-brands fa-github"></i></div>
+          </div>
+          <div class="project-body">
+            <h3>Plataforma de Projetos Ao Vivo</h3>
+            <p>Sistema full-stack que cadastra projetos, verifica automaticamente se estão no ar, mede tempo de resposta e gera screenshot de fallback quando o site bloqueia incorporação — com painel administrativo e monitoramento a cada 6h.</p>
+            <div class="project-tags"><span>Node.js</span><span>Express</span><span>Puppeteer</span><span>SQLite</span><span>JWT</span></div>
+            <a href="https://github.com/mateusomelo/portf-lioMatteus" target="_blank" rel="noopener" class="project-link"><i class="fa-brands fa-github"></i> Ver no GitHub</a>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
-
-  <!-- ===================== PROJETOS AO VIVO ===================== -->
-  <section class="section section-alt" id="projetos-ao-vivo">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag"><i class="fa-solid fa-satellite-dish"></i> Plataforma Ao Vivo</span>
-        <h2 class="section-title">Projetos <span class="text-gradient">Ao Vivo</span></h2>
-        <p class="section-desc">
-          Uma vitrine de sistemas em produção: cada card verifica automaticamente se o projeto está no ar,
-          mede o tempo de resposta e mostra o site funcionando em tempo real — ou uma captura automática
-          quando a incorporação não é permitida.
-        </p>
-      </div>
-
-      <div class="live-toolbar reveal">
-        <div class="live-search">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" id="liveSearchInput" placeholder="Buscar por nome, tecnologia, categoria...">
-        </div>
-        <div class="live-filters" id="liveFilters">
-          <button class="live-filter-btn active" data-filter="todos">Todos</button>
-          <button class="live-filter-btn" data-filter="HTML">HTML</button>
-          <button class="live-filter-btn" data-filter="CSS">CSS</button>
-          <button class="live-filter-btn" data-filter="JavaScript">JavaScript</button>
-          <button class="live-filter-btn" data-filter="Python">Python</button>
-          <button class="live-filter-btn" data-filter="React">React</button>
-          <button class="live-filter-btn" data-filter="Node.js">Node.js</button>
-          <button class="live-filter-btn" data-filter="Infraestrutura">Infraestrutura</button>
-          <button class="live-filter-btn" data-filter="Data Center">Data Center</button>
-          <button class="live-filter-btn" data-filter="Redes">Redes</button>
-          <button class="live-filter-btn" data-filter="Telecom">Telecom</button>
-          <button class="live-filter-btn" data-filter="Cabeamento">Cabeamento</button>
-          <button class="live-filter-btn" data-filter="IA">IA</button>
-        </div>
-      </div>
-
-      <div class="live-grid" id="liveProjectsGrid">
-        <div class="live-empty" id="liveEmptyState">
-          <i class="fa-solid fa-satellite-dish"></i>
-          <p>Nenhum projeto ao vivo cadastrado ainda.</p>
-          <span>Assim que um projeto for adicionado na área administrativa, ele aparece aqui automaticamente.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== MODAL PREMIUM: PREVIEW DE PROJETO AO VIVO ===== -->
-  <div class="live-modal-overlay" id="liveModalOverlay">
-    <div class="live-modal">
-      <div class="live-modal-header">
-        <div class="live-modal-title">
-          <span id="liveModalName">Projeto</span>
-          <span class="live-modal-status-badge" id="liveModalStatus"></span>
-        </div>
-        <div class="live-modal-actions">
-          <a href="#" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" id="liveModalOpenSite"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Site</a>
-          <button class="admin-modal-close" id="liveModalClose"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-      </div>
-      <div class="live-modal-body" id="liveModalBody">
-        <!-- iframe ao vivo ou screenshot injetados via JS -->
-      </div>
-    </div>
-  </div>
 
   <!-- ===================== CERTIFICAÇÕES ===================== -->
   <section class="section" id="certificacoes">
@@ -441,33 +376,6 @@
         <div class="cert-card reveal" data-tilt><i class="fa-solid fa-gears"></i><h3>NR-12</h3><p>Segurança em Máquinas e Equipamentos</p></div>
         <div class="cert-card reveal" data-tilt><i class="fa-solid fa-box-archive"></i><h3>NR-33</h3><p>Espaços Confinados</p></div>
         <div class="cert-card reveal" data-tilt><i class="fa-solid fa-person-falling-burst"></i><h3>NR-35</h3><p>Trabalho em Altura</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== SKILLS ===================== -->
-  <section class="section section-alt" id="skills">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Nível técnico</span>
-        <h2 class="section-title">Minhas <span class="text-gradient">Skills</span></h2>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skills-col reveal" data-reveal="left">
-          <div class="skill-bar"><div class="skill-info"><span>Infraestrutura</span><span class="skill-percent">92%</span></div><div class="skill-track"><div class="skill-fill" data-width="92"></div></div></div>
-          <div class="skill-bar"><div class="skill-info"><span>Redes</span><span class="skill-percent">90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90"></div></div></div>
-          <div class="skill-bar"><div class="skill-info"><span>Suporte Técnico</span><span class="skill-percent">95%</span></div><div class="skill-track"><div class="skill-fill" data-width="95"></div></div></div>
-          <div class="skill-bar"><div class="skill-info"><span>Fibra Óptica</span><span class="skill-percent">85%</span></div><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
-          <div class="skill-bar"><div class="skill-info"><span>Cabeamento Estruturado</span><span class="skill-percent">90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90"></div></div></div>
-        </div>
-        <div class="skills-col reveal" data-reveal="right">
-          <div class="skill-bar"><div class="skill-info"><span>Data Center</span><span class="skill-percent">88%</span></div><div class="skill-track"><div class="skill-fill" data-width="88"></div></div></div>
-          <div class="skill-bar"><div class="skill-info"><span>Python</span><span class="skill-percent">75%</span></div><div class="skill-track"><div class="skill-fill" data-width="75"></div></div></div>
-          <div class="skill-bar"><div class="skill-info"><span>HTML</span><span class="skill-percent">90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90"></div></div></div>
-          <div class="skill-bar"><div class="skill-info"><span>CSS</span><span class="skill-percent">85%</span></div><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
-          <div class="skill-bar"><div class="skill-info"><span>JavaScript</span><span class="skill-percent">78%</span></div><div class="skill-track"><div class="skill-fill" data-width="78"></div></div></div>
-        </div>
       </div>
     </div>
   </section>

@@ -1,91 +1,70 @@
 # Portfólio — Matteus Oliveira de Melo
 
-Portfólio pessoal premium com uma plataforma de **Projetos Ao Vivo**: cadastre a URL de um projeto na área
-administrativa e ele aparece automaticamente na página inicial — ao vivo em um iframe quando o site permite,
-ou com uma screenshot automática (gerada via Puppeteer) quando não permite. Tudo monitorado a cada 6 horas.
+Portfólio pessoal premium, 100% estático (HTML5, CSS3, JavaScript puro). Basta hospedar em qualquer serviço
+estático — Netlify, GitHub Pages, Vercel — sem precisar de servidor rodando.
 
 ## Estrutura
 
 ```
 portfolio-matteus/
-├── index.html            -> site público (inclui a seção "Projetos Ao Vivo")
-├── projeto.html           -> página individual de projeto (/projetos/:slug)
+├── index.html
 ├── css/style.css
 ├── js/script.js
-├── assets/                -> foto, currículo, imagens dos projetos estáticos
-├── admin/                 -> área administrativa (login + gestão de projetos)
-│   ├── login.html
-│   ├── dashboard.html
-│   ├── admin.css
-│   └── admin.js
-├── server/                -> backend (Node.js + Express)
-│   ├── server.js
-│   ├── config/            -> banco de dados (node:sqlite) e variáveis de ambiente
-│   ├── repositories/      -> acesso ao banco de dados
-│   ├── controllers/       -> regras de cada rota
-│   ├── services/          -> iframe check, screenshot (Puppeteer), health check, verificação
-│   ├── routes/             -> definição das rotas (auth, projetos públicos, admin)
-│   ├── middleware/         -> autenticação JWT e upload de imagens
-│   ├── scheduler/          -> monitoramento automático a cada 6h (node-cron)
-│   └── scripts/            -> script para criar o usuário administrador
-├── uploads/
-│   ├── screenshots/        -> screenshots geradas automaticamente
-│   └── projects/           -> imagens personalizadas enviadas no admin
-└── package.json
+├── assets/
+│   ├── img/perfil.jpg         -> foto de perfil (Hero)
+│   ├── projects/projeto-N.jpg -> imagens dos projetos
+│   └── cv/curriculo-*.pdf     -> currículo em PDF
+└── README.md
 ```
 
-## Como rodar
+## Como visualizar
 
-Pré-requisitos: [Node.js](https://nodejs.org) 22.5 ou superior (usa o módulo nativo `node:sqlite`, sem dependências de banco externas).
+Basta abrir o `index.html` em um navegador, ou servir a pasta com um servidor local:
 
 ```bash
-# 1. Instalar dependências (baixa também o Chromium usado pelo Puppeteer)
-npm install
-
-# 2. Configurar variáveis de ambiente
-cp .env.example .env
-# edite o .env e troque JWT_SECRET por um valor aleatório
-
-# 3. Criar o usuário administrador
-npm run create-admin -- --email=seu@email.com --password=SenhaForte123
-
-# 4. Iniciar o servidor
-npm start
+npx serve .
 ```
 
-Depois disso:
+## Deploy no Netlify
 
-- Site: **http://localhost:3000**
-- Login administrativo: **http://localhost:3000/admin/login.html**
-
-> O site agora precisa rodar através do servidor Node (não abra mais o `index.html` direto no navegador),
-> pois a seção "Projetos Ao Vivo" consome a API do backend.
-
-## Como funciona a verificação automática
-
-Ao salvar um projeto na área administrativa, o sistema:
-
-1. Salva os dados no banco (SQLite local, em `server/data/portfolio.sqlite`).
-2. Acessa a URL informada e mede o tempo de resposta.
-3. Verifica os headers `X-Frame-Options` e `Content-Security-Policy` para saber se o site permite ser
-   incorporado em um `<iframe>`.
-4. Se permitir → o card mostra o site **ao vivo**.
-5. Se não permitir (ou estiver offline) → o sistema gera uma **screenshot automática** com Puppeteer e usa
-   como capa do projeto. O visitante nunca vê essa decisão, apenas o resultado final.
-6. A cada 6 horas, um job (`node-cron`) reverifica todos os projetos cadastrados, atualizando status,
-   tempo de resposta e, se necessário, gerando uma nova screenshot.
+1. Suba este repositório no GitHub (já feito).
+2. No Netlify: "Add new site" → "Import an existing project" → selecione o repositório.
+3. Build command: (deixe em branco) · Publish directory: `.` (raiz do projeto).
+4. Deploy — pronto, o site é servido direto como estático.
 
 ## Pontos para personalizar
 
 - **Foto de perfil**: `assets/img/perfil.jpg`
 - **Currículo em PDF**: `assets/cv/curriculo-matteus-oliveira-melo.pdf`
-- **Imagens dos projetos estáticos** (seção "Projetos"): `assets/projects/projeto-1.jpg` até `projeto-5.jpg`
+- **Imagens dos projetos**: `assets/projects/projeto-1.jpg` até `projeto-6.jpg`
+- **Links reais** (LinkedIn, GitHub, WhatsApp, repositórios dos projetos): buscar por `href="#"` em `index.html`.
 - **Período de cada experiência** na Linha do Tempo: buscar por `Período: <em>adicionar</em>` em `index.html`.
 - **Mapa de contato**: o `iframe` do Google Maps está com uma localização genérica — troque a query `q=` na URL.
-- **Formulário de contato** (seção Contato): é front-end apenas. Para envio real, integre Formspree, EmailJS ou backend próprio.
-- **Projetos Ao Vivo**: cadastre e gerencie pela área administrativa, não editando HTML diretamente.
+- **Formulário de contato**: é front-end apenas (mostra uma mensagem de sucesso simulada). Para envio real,
+  integre um serviço como Formspree ou EmailJS (funcionam com sites 100% estáticos, sem precisar de backend).
 
 ## Tecnologias
 
-**Frontend:** HTML5 · CSS3 (Glassmorphism, gradientes, animações) · JavaScript (vanilla) · Font Awesome 6 · Google Fonts
-**Backend:** Node.js · Express · `node:sqlite` (nativo) · JWT · bcryptjs · Multer · node-cron · Puppeteer
+HTML5 · CSS3 (Glassmorphism, gradientes, animações) · JavaScript (vanilla) · Font Awesome 6 · Google Fonts (Outfit + Inter)
+
+## Plataforma "Projetos Ao Vivo" (opcional, não faz parte do site publicado)
+
+Este repositório também contém, nas pastas `server/` e `admin/`, uma plataforma full-stack completa
+(Node.js + Express + `node:sqlite` + Puppeteer + JWT) que cadastra projetos, verifica automaticamente se
+estão no ar, mede tempo de resposta e gera screenshot de fallback quando o site bloqueia incorporação em
+iframe — com painel administrativo e monitoramento a cada 6h.
+
+Ela **não está conectada ao site público** (que voltou a ser estático para simplificar a hospedagem no
+Netlify), mas fica preservada no repositório como projeto próprio — inclusive já aparece como card na seção
+"Projetos" do site. Para rodá-la localmente:
+
+```bash
+npm install
+cp .env.example .env
+npm run create-admin -- --email=seu@email.com --password=SenhaForte123
+npm start
+# site: http://localhost:3000 · admin: http://localhost:3000/admin/login.html
+```
+
+Se preferir remover essa parte do repositório por completo, é só apagar as pastas `server/`, `admin/`,
+`uploads/`, `projeto.html`, `package.json`, `package-lock.json` e `.env.example`.
