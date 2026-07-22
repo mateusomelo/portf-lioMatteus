@@ -353,44 +353,6 @@ document.addEventListener('DOMContentLoaded', () => {
     bars.forEach(bar => observer.observe(bar));
   })();
 
-  /* ---------- 15. CONTACT FORM (client-side) ---------- */
-  (function contactForm() {
-    const form = document.getElementById('contactForm');
-    const feedback = document.getElementById('formFeedback');
-    if (!form) return;
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const message = form.message.value.trim();
-
-      if (!name || !email || !message) {
-        feedback.style.color = '#ff6b6b';
-        feedback.textContent = 'Por favor, preencha todos os campos obrigatórios.';
-        return;
-      }
-
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const submitText = document.getElementById('submitText');
-      const originalHTML = submitText.innerHTML;
-
-      submitText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
-      submitBtn.disabled = true;
-
-      setTimeout(() => {
-        feedback.style.color = '#00e0ff';
-        feedback.textContent = `Obrigado, ${name.split(' ')[0]}! Sua mensagem foi registrada. Em breve entrarei em contato.`;
-        submitText.innerHTML = originalHTML;
-        submitBtn.disabled = false;
-        form.reset();
-      }, 1200);
-
-      /* NOTA: este formulário é apenas front-end. Para envio real de e-mails,
-         integre com um serviço como Formspree, EmailJS ou um back-end próprio. */
-    });
-  })();
-
   /* ---------- 16. Runs once preloader finishes ---------- */
   function initAfterLoad() {
     document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('active'));
