@@ -55,8 +55,8 @@ estão no ar, mede tempo de resposta e gera screenshot de fallback quando o site
 iframe — com painel administrativo e monitoramento a cada 6h.
 
 Ela **não está conectada ao site público** (que voltou a ser estático para simplificar a hospedagem no
-Netlify), mas fica preservada no repositório como projeto próprio — inclusive já aparece como card na seção
-"Projetos" do site. Para rodá-la localmente:
+Netlify) nem aparece na seção "Projetos", mas fica preservada no repositório caso queira rodá-la localmente
+ou usá-la como projeto próprio no futuro:
 
 ```bash
 npm install
