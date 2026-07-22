@@ -608,6 +608,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; line-height
 .project-body p { font-size: 0.88rem; color: var(--gray-light); margin-bottom: 16px; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 .project-tags span { font-size: 0.7rem; padding: 5px 11px; border-radius: 14px; background: rgba(0,224,255,0.07); color: var(--neon-blue); border: 1px solid rgba(0,224,255,0.2); }
+.project-links { display: flex; gap: 20px; flex-wrap: wrap; }
 .project-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--white); border-bottom: 1px solid transparent; transition: var(--transition); }
 .project-link:hover { color: var(--neon-blue); border-color: var(--neon-blue); }
 
