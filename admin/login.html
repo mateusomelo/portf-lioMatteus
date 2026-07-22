@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Administrativo | Matteus Oliveira de Melo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+<div class="admin-login-wrap">
+  <form class="glass-card admin-login-card" id="loginForm">
+    <div class="admin-login-logo">MOM<span class="dot">.</span></div>
+    <p class="admin-login-sub">Área administrativa — Projetos Ao Vivo</p>
+
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" required placeholder="seu@email.com" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Senha</label>
+      <input type="password" id="password" name="password" required placeholder="••••••••" autocomplete="current-password">
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-full">
+      <span id="loginBtnText"><i class="fa-solid fa-right-to-bracket"></i> Entrar</span>
+    </button>
+
+    <p class="admin-error" id="loginError"></p>
+
+    <a href="../index.html" class="admin-back-link"><i class="fa-solid fa-arrow-left"></i> Voltar ao site</a>
+  </form>
+</div>
+
+<script src="admin.js" defer></script>
+</body>
+</html>

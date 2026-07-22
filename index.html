@@ -49,6 +49,7 @@
       <li><a href="#especialidades" class="nav-link" data-section="especialidades">Especialidades</a></li>
       <li><a href="#experiencia" class="nav-link" data-section="experiencia">Experiência</a></li>
       <li><a href="#projetos" class="nav-link" data-section="projetos">Projetos</a></li>
+      <li><a href="#projetos-ao-vivo" class="nav-link" data-section="projetos-ao-vivo">Projetos Ao Vivo</a></li>
       <li><a href="#certificacoes" class="nav-link" data-section="certificacoes">Certificações</a></li>
       <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
       <li><a href="#contato" class="nav-link" data-section="contato">Contato</a></li>
@@ -363,6 +364,70 @@
     </div>
   </section>
 
+  <!-- ===================== PROJETOS AO VIVO ===================== -->
+  <section class="section section-alt" id="projetos-ao-vivo">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i class="fa-solid fa-satellite-dish"></i> Plataforma Ao Vivo</span>
+        <h2 class="section-title">Projetos <span class="text-gradient">Ao Vivo</span></h2>
+        <p class="section-desc">
+          Uma vitrine de sistemas em produção: cada card verifica automaticamente se o projeto está no ar,
+          mede o tempo de resposta e mostra o site funcionando em tempo real — ou uma captura automática
+          quando a incorporação não é permitida.
+        </p>
+      </div>
+
+      <div class="live-toolbar reveal">
+        <div class="live-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="liveSearchInput" placeholder="Buscar por nome, tecnologia, categoria...">
+        </div>
+        <div class="live-filters" id="liveFilters">
+          <button class="live-filter-btn active" data-filter="todos">Todos</button>
+          <button class="live-filter-btn" data-filter="HTML">HTML</button>
+          <button class="live-filter-btn" data-filter="CSS">CSS</button>
+          <button class="live-filter-btn" data-filter="JavaScript">JavaScript</button>
+          <button class="live-filter-btn" data-filter="Python">Python</button>
+          <button class="live-filter-btn" data-filter="React">React</button>
+          <button class="live-filter-btn" data-filter="Node.js">Node.js</button>
+          <button class="live-filter-btn" data-filter="Infraestrutura">Infraestrutura</button>
+          <button class="live-filter-btn" data-filter="Data Center">Data Center</button>
+          <button class="live-filter-btn" data-filter="Redes">Redes</button>
+          <button class="live-filter-btn" data-filter="Telecom">Telecom</button>
+          <button class="live-filter-btn" data-filter="Cabeamento">Cabeamento</button>
+          <button class="live-filter-btn" data-filter="IA">IA</button>
+        </div>
+      </div>
+
+      <div class="live-grid" id="liveProjectsGrid">
+        <div class="live-empty" id="liveEmptyState">
+          <i class="fa-solid fa-satellite-dish"></i>
+          <p>Nenhum projeto ao vivo cadastrado ainda.</p>
+          <span>Assim que um projeto for adicionado na área administrativa, ele aparece aqui automaticamente.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODAL PREMIUM: PREVIEW DE PROJETO AO VIVO ===== -->
+  <div class="live-modal-overlay" id="liveModalOverlay">
+    <div class="live-modal">
+      <div class="live-modal-header">
+        <div class="live-modal-title">
+          <span id="liveModalName">Projeto</span>
+          <span class="live-modal-status-badge" id="liveModalStatus"></span>
+        </div>
+        <div class="live-modal-actions">
+          <a href="#" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" id="liveModalOpenSite"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Site</a>
+          <button class="admin-modal-close" id="liveModalClose"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="live-modal-body" id="liveModalBody">
+        <!-- iframe ao vivo ou screenshot injetados via JS -->
+      </div>
+    </div>
+  </div>
+
   <!-- ===================== CERTIFICAÇÕES ===================== -->
   <section class="section" id="certificacoes">
     <div class="container">
@@ -470,21 +535,21 @@
 
       <div class="contact-grid">
         <div class="contact-info reveal" data-reveal="left">
-          <a href="tel:+5500000000000" class="contact-item glass-card" data-tilt>
+          <a href="tel:+5511985996532" class="contact-item glass-card" data-tilt>
             <i class="fa-solid fa-phone"></i>
-            <div><span>Telefone</span><strong>(00) 00000-0000</strong></div>
+            <div><span>Telefone</span><strong>(11)98599-6532</strong></div>
           </a>
           <a href="mailto:seuemail@exemplo.com" class="contact-item glass-card" data-tilt>
             <i class="fa-solid fa-envelope"></i>
-            <div><span>E-mail</span><strong>seuemail@exemplo.com</strong></div>
+            <div><span>E-mail</span><strong>matteusomelo49@gmail.com</strong></div>
           </a>
           <a href="#" target="_blank" rel="noopener" class="contact-item glass-card" data-tilt>
             <i class="fa-brands fa-linkedin-in"></i>
-            <div><span>LinkedIn</span><strong>/in/matteus-oliveira</strong></div>
+            <div><span>LinkedIn</span><strong>www.linkedin.com/in/matteus-oliveira-de-melo-b00181214</strong></div>
           </a>
           <a href="#" target="_blank" rel="noopener" class="contact-item glass-card" data-tilt>
             <i class="fa-brands fa-github"></i>
-            <div><span>GitHub</span><strong>/matteus-oliveira</strong></div>
+            <div><span>GitHub</span><strong>https://github.com/mateusomelo</strong></div>
           </a>
           <a href="#" target="_blank" rel="noopener" class="contact-item glass-card" data-tilt>
             <i class="fa-brands fa-whatsapp"></i>

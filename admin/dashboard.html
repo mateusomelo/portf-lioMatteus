@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos | Área Administrativa — Matteus Oliveira de Melo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+<div class="admin-shell">
+
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-logo">MOM<span class="dot">.</span></div>
+    <nav class="admin-nav">
+      <a href="dashboard.html" class="active"><i class="fa-solid fa-diagram-project"></i> <span>Projetos</span></a>
+      <a href="../index.html" target="_blank"><i class="fa-solid fa-globe"></i> <span>Ver site</span></a>
+    </nav>
+    <button class="admin-logout" id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> <span>Sair</span></button>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div>
+        <h1>Projetos</h1>
+        <p>Cadastre seus projetos e acompanhe status, tempo de resposta e capa automaticamente.</p>
+      </div>
+      <button class="btn btn-primary" id="newProjectBtn"><i class="fa-solid fa-plus"></i> Novo Projeto</button>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Projeto</th>
+            <th>Categoria</th>
+            <th>Destaque</th>
+            <th>Status</th>
+            <th>Resposta</th>
+            <th>Última verificação</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="projectsTableBody">
+          <tr><td colspan="7" style="text-align:center; padding: 40px; color: var(--gray);">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="admin-empty" id="emptyState" style="display:none;">
+      <i class="fa-solid fa-diagram-project"></i>
+      <p>Nenhum projeto cadastrado ainda. Clique em "+ Novo Projeto" para começar.</p>
+    </div>
+  </main>
+</div>
+
+<!-- ================= MODAL: NOVO / EDITAR PROJETO ================= -->
+<div class="admin-modal-overlay" id="projectModalOverlay">
+  <form class="glass-card admin-modal" id="projectForm">
+    <div class="admin-modal-header">
+      <h2 id="modalTitle">Novo Projeto</h2>
+      <button type="button" class="admin-modal-close" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <input type="hidden" id="projectId" name="id">
+
+    <div class="form-group">
+      <label for="pName">Nome do Projeto</label>
+      <input type="text" id="pName" name="name" required placeholder="Ex: Sistema de Hotel">
+    </div>
+
+    <div class="form-group">
+      <label for="pDescription">Descrição</label>
+      <textarea id="pDescription" name="description" rows="3" placeholder="Descreva brevemente o projeto..."></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="pUrl">URL do Projeto</label>
+        <input type="url" id="pUrl" name="url" required placeholder="https://meuprojeto.com">
+      </div>
+      <div class="form-group">
+        <label for="pGithub">GitHub</label>
+        <input type="url" id="pGithub" name="github_url" placeholder="https://github.com/usuario/repo">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="pTechnologies">Tecnologias (separadas por vírgula)</label>
+        <input type="text" id="pTechnologies" name="technologies" placeholder="HTML, CSS, JavaScript">
+      </div>
+      <div class="form-group">
+        <label for="pCategory">Categoria</label>
+        <select id="pCategory" name="category">
+          <option value="">Selecione...</option>
+          <option value="HTML">HTML</option>
+          <option value="CSS">CSS</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="Python">Python</option>
+          <option value="React">React</option>
+          <option value="Node.js">Node.js</option>
+          <option value="Infraestrutura">Infraestrutura</option>
+          <option value="Data Center">Data Center</option>
+          <option value="Redes">Redes</option>
+          <option value="Telecom">Telecom</option>
+          <option value="Cabeamento">Cabeamento</option>
+          <option value="IA">IA</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Projeto em Destaque</label>
+        <div class="admin-toggle-group">
+          <input type="radio" id="featuredYes" name="featured" value="sim">
+          <label for="featuredYes">Sim</label>
+          <input type="radio" id="featuredNo" name="featured" value="nao" checked>
+          <label for="featuredNo">Não</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pColor">Cor do Card (opcional)</label>
+        <div class="admin-color-row">
+          <input type="color" id="pColor" name="card_color" value="#00e0ff">
+          <span style="font-size:0.82rem; color: var(--gray);">Usada como brilho de destaque no card</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pImage">Imagem personalizada (opcional)</label>
+      <div class="admin-file-input">
+        <input type="file" id="pImage" name="image" accept="image/*">
+      </div>
+      <p style="font-size:0.78rem; color: var(--gray); margin-top:8px;">
+        Se não enviar, o sistema tentará mostrar o site ao vivo em iframe ou gerar uma screenshot automática.
+      </p>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-full">
+      <span id="saveBtnText"><i class="fa-solid fa-floppy-disk"></i> Salvar Projeto</span>
+    </button>
+    <p class="form-feedback" id="formFeedback"></p>
+  </form>
+</div>
+
+<div class="admin-toast" id="toast"></div>
+
+<script src="admin.js" defer></script>
+</body>
+</html>

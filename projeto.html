@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto | Matteus Oliveira de Melo</title>
+<meta name="description" content="Detalhes do projeto — Matteus Oliveira de Melo.">
+<base href="/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="navbar scrolled" style="position: relative;">
+  <nav class="nav-container">
+    <a href="index.html" class="nav-logo">MOM<span class="dot">.</span></a>
+    <a href="index.html#projetos-ao-vivo" class="btn btn-secondary btn-sm">
+      <i class="fa-solid fa-arrow-left"></i> Voltar aos projetos
+    </a>
+  </nav>
+</header>
+
+<main class="section" style="padding-top: 60px;" id="projectDetail">
+  <div class="container" id="projectContent" style="max-width: 980px;">
+    <div style="text-align:center; padding: 80px 20px; color: var(--gray);">
+      <i class="fa-solid fa-spinner fa-spin" style="font-size:2rem; color: var(--neon-blue); display:block; margin-bottom:16px;"></i>
+      Carregando projeto...
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-container">
+    <a href="index.html" class="nav-logo">MOM<span class="dot">.</span></a>
+    <p>&copy; 2026 Matteus Oliveira de Melo. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const container = document.getElementById('projectContent');
+  const slug = window.location.pathname.replace(/^\/projetos\//, '').replace(/\/$/, '');
+
+  function escapeHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+  function formatDate(iso) {
+    if (!iso) return '—';
+    return new Date(iso).toLocaleString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+  }
+  const statusLabel = { online: '🟢 Online', offline: '🔴 Offline', checking: '🟡 Verificando' };
+
+  try {
+    const response = await fetch(`/api/projects/${encodeURIComponent(slug)}`);
+    if (!response.ok) throw new Error('not-found');
+    const { project } = await response.json();
+    document.title = `${project.name} | Matteus Oliveira de Melo`;
+
+    const gallery = [project.image].filter(Boolean);
+
+    const previewHtml = project.embeddable
+      ? `<iframe src="${project.url}" title="${escapeHtml(project.name)}" style="width:100%; height:65vh; border:0; border-radius: var(--radius-md);" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>`
+      : project.image
+        ? `<img src="${project.image}" alt="${escapeHtml(project.name)}" style="width:100%; border-radius: var(--radius-md);">`
+        : `<div class="glass-card" style="padding:60px; text-align:center; color:var(--gray);"><i class="fa-solid fa-server" style="font-size:2.4rem; margin-bottom:14px; display:block;"></i>Pré-visualização indisponível.</div>`;
+
+    container.innerHTML = `
+      <div class="section-header reveal active" style="text-align:left; margin-bottom: 30px;">
+        <span class="section-tag">${escapeHtml(project.category || 'Projeto')}</span>
+        <h1 class="section-title">${escapeHtml(project.name)}</h1>
+        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top: 10px;">
+          <span class="live-modal-status-badge ${project.status}">${statusLabel[project.status] || statusLabel.checking}</span>
+          <span style="color:var(--gray); font-size:0.85rem;"><i class="fa-solid fa-gauge-high" style="color:var(--neon-blue);"></i> ${project.response_time_ms != null ? project.response_time_ms + ' ms' : '—'}</span>
+          <span style="color:var(--gray); font-size:0.85rem;"><i class="fa-regular fa-clock" style="color:var(--neon-blue);"></i> Verificado em ${formatDate(project.last_checked_at)}</span>
+        </div>
+      </div>
+
+      <div class="reveal active" style="margin-bottom: 34px;">${previewHtml}</div>
+
+      <div class="about-grid" style="grid-template-columns: 1.4fr 1fr;">
+        <div class="reveal active">
+          <h2 style="font-size:1.3rem; margin-bottom:14px;">Sobre o projeto</h2>
+          <p style="color:var(--gray-light); line-height:1.7;">${escapeHtml(project.description || 'Sem descrição cadastrada.')}</p>
+
+          ${gallery.length ? `
+            <h2 style="font-size:1.3rem; margin: 30px 0 14px;">Galeria</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:14px;">
+              ${gallery.map((src) => `<img src="${src}" alt="${escapeHtml(project.name)}" style="width:100%; border-radius: var(--radius-sm); border:1px solid var(--border-color);">`).join('')}
+            </div>` : ''}
+        </div>
+
+        <div class="glass-card reveal active" style="padding: 28px;">
+          <h3 style="font-size:1rem; margin-bottom:16px;">Detalhes</h3>
+
+          <div style="margin-bottom:18px;">
+            <span style="display:block; font-size:0.75rem; color:var(--gray); margin-bottom:8px;">Tecnologias</span>
+            <div class="project-tags">${(project.technologies || []).map((t) => `<span>${escapeHtml(t)}</span>`).join('') || '—'}</div>
+          </div>
+
+          <div style="margin-bottom:18px;">
+            <span style="display:block; font-size:0.75rem; color:var(--gray); margin-bottom:4px;">Cadastrado em</span>
+            <strong style="font-size:0.9rem;">${formatDate(project.created_at)}</strong>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top: 22px;">
+            <a href="${project.url}" target="_blank" rel="noopener" class="btn btn-primary btn-full"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Site</a>
+            ${project.github_url ? `<a href="${project.github_url}" target="_blank" rel="noopener" class="btn btn-secondary btn-full"><i class="fa-brands fa-github"></i> GitHub</a>` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  } catch (err) {
+    container.innerHTML = `
+      <div style="text-align:center; padding: 80px 20px;">
+        <i class="fa-solid fa-triangle-exclamation" style="font-size:2.4rem; color:var(--gray-dark); display:block; margin-bottom:16px;"></i>
+        <h2 style="margin-bottom:10px;">Projeto não encontrado</h2>
+        <p style="color:var(--gray); margin-bottom:24px;">O projeto que você procura não existe ou foi removido.</p>
+        <a href="index.html#projetos-ao-vivo" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Voltar aos projetos</a>
+      </div>`;
+  }
+});
+
+window.addEventListener('scroll', () => {
+  const bar = document.getElementById('scrollProgress');
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+});
+</script>
+</body>
+</html>

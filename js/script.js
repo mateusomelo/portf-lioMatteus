@@ -397,3 +397,232 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+/* =========================================================
+   PROJETOS AO VIVO — plataforma dinâmica (consome a API do backend)
+   Módulo isolado: não interfere em nenhuma funcionalidade acima.
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+
+  const grid = document.getElementById('liveProjectsGrid');
+  if (!grid) return; // seção não presente nesta página
+
+  const emptyState = document.getElementById('liveEmptyState');
+  const searchInput = document.getElementById('liveSearchInput');
+  const filterButtons = document.querySelectorAll('.live-filter-btn');
+  const modalOverlay = document.getElementById('liveModalOverlay');
+  const modalClose = document.getElementById('liveModalClose');
+  const modalBody = document.getElementById('liveModalBody');
+  const modalName = document.getElementById('liveModalName');
+  const modalStatus = document.getElementById('liveModalStatus');
+  const modalOpenSite = document.getElementById('liveModalOpenSite');
+
+  let allProjects = [];
+  let activeFilter = 'todos';
+  let searchTerm = '';
+
+  const statusLabel = { online: '🟢 Online', offline: '🔴 Offline', checking: '🟡 Verificando' };
+
+  function timeAgo(iso) {
+    if (!iso) return 'nunca verificado';
+    const diffMs = Date.now() - new Date(iso).getTime();
+    const minutes = Math.floor(diffMs / 60000);
+    if (minutes < 1) return 'agora mesmo';
+    if (minutes < 60) return `há ${minutes} min`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `há ${hours}h`;
+    const days = Math.floor(hours / 24);
+    return `há ${days}d`;
+  }
+
+  function escapeHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  function projectMatchesFilter(project, filter) {
+    if (filter === 'todos') return true;
+    const f = filter.toLowerCase();
+    if ((project.category || '').toLowerCase() === f) return true;
+    return (project.technologies || []).some((t) => t.toLowerCase() === f);
+  }
+
+  function projectMatchesSearch(project, term) {
+    if (!term) return true;
+    const t = term.toLowerCase();
+    return (
+      project.name.toLowerCase().includes(t) ||
+      (project.description || '').toLowerCase().includes(t) ||
+      (project.category || '').toLowerCase().includes(t) ||
+      (project.technologies || []).some((tech) => tech.toLowerCase().includes(t))
+    );
+  }
+
+  function buildCard(project) {
+    const card = document.createElement('article');
+    card.className = 'live-card reveal';
+    card.dataset.tilt = '';
+    card.dataset.id = project.id;
+
+    if (project.card_color) {
+      card.style.setProperty('--card-glow', project.card_color);
+      card.style.setProperty('--card-glow-shadow', hexToRgba(project.card_color, 0.35));
+    }
+
+    const previewHtml = project.embeddable
+      ? `<iframe src="${project.url}" loading="lazy" title="${escapeHtml(project.name)}" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+         <div class="live-badge-live"><span class="live-dot"></span> AO VIVO</div>`
+      : project.image
+        ? `<img src="${project.image}" alt="${escapeHtml(project.name)}" loading="lazy">`
+        : `<div class="live-card-preview-hint" style="opacity:1; position:static; height:100%;"><i class="fa-solid fa-server"></i></div>`;
+
+    card.innerHTML = `
+      <div class="live-card-preview">
+        ${previewHtml}
+        <div class="live-status-chip ${project.status}"><span class="status-dot ${project.status}"></span> ${project.status === 'online' ? 'Online' : project.status === 'offline' ? 'Offline' : 'Verificando'}</div>
+        <div class="live-card-preview-hint"><i class="fa-solid fa-expand"></i> Ver ao vivo</div>
+      </div>
+      <div class="live-card-body">
+        <h3>${escapeHtml(project.name)}</h3>
+        <p>${escapeHtml(project.description || '')}</p>
+        <div class="live-card-tags">${(project.technologies || []).slice(0, 5).map((t) => `<span>${escapeHtml(t)}</span>`).join('')}</div>
+        <div class="live-card-meta">
+          <span><i class="fa-solid fa-gauge-high"></i> ${project.response_time_ms != null ? project.response_time_ms + ' ms' : '—'}</span>
+          <span><i class="fa-regular fa-clock"></i> ${timeAgo(project.last_checked_at)}</span>
+        </div>
+        <div class="live-card-actions">
+          <a href="${project.url}" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Projeto</a>
+          ${project.github_url ? `<a href="${project.github_url}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm"><i class="fa-brands fa-github"></i> GitHub</a>` : ''}
+        </div>
+      </div>
+    `;
+
+    card.querySelector('.live-card-preview').addEventListener('click', () => openModal(project));
+    return card;
+  }
+
+  function hexToRgba(hex, alpha) {
+    const clean = hex.replace('#', '');
+    const bigint = parseInt(clean.length === 3 ? clean.split('').map((c) => c + c).join('') : clean, 16);
+    const r = (bigint >> 16) & 255, g = (bigint >> 8) & 255, b = bigint & 255;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
+  function render() {
+    const filtered = allProjects.filter((p) => projectMatchesFilter(p, activeFilter) && projectMatchesSearch(p, searchTerm));
+
+    grid.querySelectorAll('.live-card').forEach((el) => el.remove());
+
+    if (!filtered.length) {
+      emptyState.style.display = 'block';
+      if (allProjects.length) {
+        emptyState.querySelector('p').textContent = 'Nenhum projeto encontrado.';
+        emptyState.querySelector('span').textContent = 'Tente outro termo de busca ou filtro.';
+      }
+      return;
+    }
+    emptyState.style.display = 'none';
+
+    const fragment = document.createDocumentFragment();
+    filtered.forEach((project) => fragment.appendChild(buildCard(project)));
+    grid.appendChild(fragment);
+
+    activateRevealAndTilt();
+  }
+
+  function activateRevealAndTilt() {
+    const newCards = grid.querySelectorAll('.live-card.reveal:not(.active)');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    newCards.forEach((card) => revealObserver.observe(card));
+
+    if (!window.matchMedia('(max-width: 900px)').matches) {
+      grid.querySelectorAll('.live-card[data-tilt]').forEach((el) => {
+        if (el.dataset.tiltBound) return;
+        el.dataset.tiltBound = 'true';
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left, y = e.clientY - rect.top;
+          const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -4;
+          const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 4;
+          el.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = 'perspective(900px) rotateX(0) rotateY(0) translateY(0)';
+        });
+      });
+    }
+  }
+
+  function openModal(project) {
+    modalName.textContent = project.name;
+    modalStatus.textContent = statusLabel[project.status] || statusLabel.checking;
+    modalStatus.className = `live-modal-status-badge ${project.status}`;
+    modalOpenSite.href = project.url;
+
+    if (project.embeddable) {
+      modalBody.innerHTML = `<iframe src="${project.url}" title="${escapeHtml(project.name)}" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>`;
+    } else if (project.image) {
+      modalBody.innerHTML = `<img src="${project.image}" alt="${escapeHtml(project.name)}">`;
+    } else {
+      modalBody.innerHTML = `
+        <div class="live-modal-fallback">
+          <i class="fa-solid fa-server"></i>
+          <p>Pré-visualização indisponível para este projeto no momento.</p>
+        </div>`;
+    }
+
+    modalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => { modalBody.innerHTML = ''; }, 300);
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      render();
+    });
+  });
+
+  let searchDebounce;
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => {
+      searchTerm = searchInput.value.trim();
+      render();
+    }, 200);
+  });
+
+  async function loadProjects() {
+    try {
+      const response = await fetch('/api/projects');
+      if (!response.ok) throw new Error('Falha ao carregar projetos.');
+      const data = await response.json();
+      allProjects = data.projects || [];
+      render();
+    } catch (err) {
+      emptyState.style.display = 'block';
+      emptyState.querySelector('p').textContent = 'Não foi possível carregar os projetos agora.';
+      emptyState.querySelector('span').textContent = 'Verifique se o servidor está em execução.';
+    }
+  }
+
+  loadProjects();
+});

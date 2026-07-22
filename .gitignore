@@ -1,0 +1,21 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente
+.env
+
+# Banco de dados local
+server/data/*.sqlite
+server/data/*.sqlite-journal
+server/data/*.sqlite-wal
+server/data/*.sqlite-shm
+
+# Uploads gerados automaticamente (screenshots e imagens enviadas pelo admin)
+uploads/screenshots/*
+uploads/projects/*
+!uploads/screenshots/.gitkeep
+!uploads/projects/.gitkeep
+
+# Logs
+npm-debug.log*
+*.log
